@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Company Name - Premier Atlanta Bath Renovations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #005A9C; /* Professional Blue */
+            --secondary-color: #F5A623; /* Warm Gold/Orange Accent */
+            --dark-text: #333333;
+            --light-text: #f8f9fa;
+            --bg-light: #f8f9fa;
+            --bg-medium: #e9ecef;
+            --border-color: #dee2e6;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.7;
+            color: var(--dark-text);
+            scroll-behavior: smooth;
+            background-color: #fff;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        h1 { font-size: clamp(2.5em, 5vw, 3.5em); margin-bottom: 0.3em; line-height: 1.2; }
+        h2 { font-size: clamp(1.8em, 4vw, 2.5em); margin-bottom: 1em; text-align: center; padding-top: 20px; position: relative; }
+        h2::after { /* Subtle underline accent for H2 */
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+        h3 { font-size: 1.5em; color: var(--primary-color); }
+
+        p { margin-bottom: 1.2em; color: #555; }
+        a { color: var(--secondary-color); text-decoration: none; transition: color 0.3s ease; }
+        a:hover { color: var(--primary-color); text-decoration: none; }
+
+        /* Navigation */
+        nav {
+            background-color: #ffffff;
+            color: var(--dark-text);
+            padding: 1em 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: background-color 0.3s ease;
+        }
+        nav.scrolled {
+             background-color: rgba(255,255,255,0.95);
+             backdrop-filter: blur(5px);
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+        }
+        nav .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        /* Optional: For an image logo */
+        /* nav .logo img { max-height: 50px; } */
+
+        nav ul {
+            list-style: none;
+            padding: 0; margin: 0; display: flex;
+        }
+        nav ul li { margin-left: 25px; }
+        nav ul li a {
+            color: var(--dark-text);
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95em;
+            padding: 5px 0;
+            position: relative;
+        }
+        nav ul li a::after { /* Underline hover effect */
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            display: block;
+            margin-top: 3px;
+            right: 0;
+            background: var(--secondary-color);
+            transition: width 0.3s ease;
+            -webkit-transition: width 0.3s ease;
+        }
+        nav ul li a:hover::after {
+            width: 100%;
+            left: 0;
+            background: var(--secondary-color);
+        }
+        nav ul li a.active::after { /* If you implement active link highlighting */
+             width: 100%;
+             left: 0;
+             background: var(--secondary-color);
+        }
+        .menu-toggle { display: none; font-size: 1.5em; cursor: pointer; }
+
+
+        /* Hero Section */
+        #hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://via.placeholder.com/1600x800.png?text=Stunning+Bathroom+Makeover'); /* REPLACE IMAGE */
+            background-size: cover;
+            background-position: center;
+            color: var(--light-text);
+            text-align: center;
+            padding: 120px 20px;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #hero h1 { color: #fff; }
+        #hero p { font-size: 1.25em; max-width: 700px; margin-bottom: 2em; color: #e0e0e0; }
+        .cta-button {
+            background-color: var(--secondary-color);
+            color: var(--dark-text); /* Darker text on bright button can be good */
+            padding: 18px 35px;
+            font-size: 1.15em;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: var(--shadow);
+            display: inline-block; /* For better box model control */
+        }
+        .cta-button:hover {
+            background-color: #e08e0b; /* Darker shade of accent */
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+            text-decoration: none;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 80px 0;
+        }
+        section:nth-child(even) { /* Alternating background for sections */
+            background-color: var(--bg-light);
+        }
+
+        /* About Us / Why Us - Benefits List */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .benefit-item {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .benefit-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        .benefit-item .icon { /* Placeholder for icons - use Font Awesome or SVGs for real icons */
+            font-size: 2.5em;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        .benefit-item h3 { font-size: 1.3em; margin-bottom: 10px; color: var(--primary-color); }
+        .benefit-item p { font-size: 0.95em; color: #666; }
+
+        /* Our Work - Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        .gallery-item {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex; /* For vertical centering of caption */
+            flex-direction: column;
+        }
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 250px; /* Fixed height for consistency */
+            object-fit: cover; /* Ensures image covers, may crop */
+            display: block;
+        }
+        .gallery-item .caption {
+            padding: 20px;
+            text-align: center;
+            background-color: #fff; /* Ensure caption background is white */
+            flex-grow: 1; /* Allow caption to take remaining space */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .gallery-item .caption h4 { font-size: 1.1em; margin-bottom: 5px; color: var(--primary-color);}
+        .gallery-item .caption p { margin: 0; font-size: 0.9em; color: #777; }
+        .before-after-label {
+            font-size: 0.9em;
+            font-weight: bold;
+            color: var(--secondary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Service Area Map */
+        .map-container {
+            position: relative;
+            overflow: hidden;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+        #service-area-map {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        .service-area-text {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1.1em;
+        }
+
+        /* Contact Section */
+        .contact-flex-container {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+        .contact-details {
+            flex: 1;
+            min-width: 300px; /* Ensure it doesn't get too squished */
+        }
+        .contact-details p {
+            margin-bottom: 1em;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+        }
+        .contact-details p strong {
+            color: var(--primary-color);
+            min-width: 80px; /* Align text after labels */
+            display: inline-block;
+        }
+        .contact-details p i { /* For icons next to contact info */
+            color: var(--secondary-color);
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .contact-form {
+            flex: 1.5; /* Form takes a bit more space */
+            min-width: 300px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+        .contact-form label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--primary-color); }
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form input[type="tel"],
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1em;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .contact-form input[type="text"]:focus,
+        .contact-form input[type="email"]:focus,
+        .contact-form input[type="tel"]:focus,
+        .contact-form textarea:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 0.2rem rgba(245, 166, 35, 0.25); /* Focus glow */
+            outline: none;
+        }
+        .contact-form textarea { height: 150px; resize: vertical; }
+        .contact-form button[type="submit"] {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .contact-form button[type="submit"]:hover {
+            background-color: #004175; /* Darker primary */
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-text);
+            color: var(--light-text);
+            text-align: center;
+            padding: 40px 0;
+        }
+        footer p { margin: 0; color: #ccc; font-size: 0.9em; }
+        footer a { color: var(--secondary-color); }
+
+        /* Scroll Animations - elements to animate */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            nav .container { flex-direction: row; /* Keep logo and toggle on one line */ }
+            nav ul {
+                display: none; /* Hide by default */
+                flex-direction: column;
+                width: 100%;
+                background-color: #fff;
+                position: absolute;
+                top: 100%; /* Position below nav */
+                left: 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                padding: 10px 0;
+            }
+            nav ul.active { display: flex; } /* Show when active */
+            nav ul li { margin-left: 0; width: 100%; text-align: center; }
+            nav ul li a { padding: 10px 20px; display: block; width: 100%; box-sizing: border-box; }
+            nav ul li a::after { display: none; } /* Remove underline hover for mobile menu */
+            .menu-toggle { display: block; color: var(--primary-color); }
+
+            #hero { padding: 80px 20px; min-height: 60vh; }
+            .contact-flex-container { flex-direction: column; }
+        }
+
+    </style>
+    <!-- Font Awesome for icons (optional but nice) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <nav id="main-nav">
+        <div class="container">
+            <a href="#hero" class="logo">YourCompany</a> <!-- Or <img src="your-logo.png" alt="Your Company Logo" class="logo-img"> -->
+            <div class="menu-toggle" id="mobile-menu-toggle">☰</div> <!-- Hamburger Icon -->
+            <ul id="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#work">Our Work</a></li>
+                <li><a href="#why-us">Why Us</a></li>
+                <li><a href="#service-area">Service Area</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section id="hero">
+            <h1 class="animate-on-scroll">Beautiful Bathrooms, Expertly Installed</h1>
+            <p class="animate-on-scroll">Atlanta's specialists in premium bath liners & wall surrounds. Get a stunning, low-maintenance bathroom transformation, often in just one day!</p>
+            <a href="#contact" class="cta-button animate-on-scroll">Get Your Free Estimate Today</a>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2 class="animate-on-scroll">The Smarter Bathroom Renovation</h2>
+                <p class="animate-on-scroll" style="text-align:center; max-width:800px; margin-left:auto; margin-right:auto;">
+                    Tired of a dated, hard-to-clean bathroom? [Your Company Name] offers an innovative, efficient solution. We specialize in installing high-quality, custom-fitted bath liners and stylish wall surrounds that revitalize your space without the cost, time, and mess of a traditional demolition.
+                </p>
+                <div class="benefits-grid">
+                    <div class="benefit-item animate-on-scroll">
+                        <div class="icon"><i class="fas fa-shield-alt"></i></div>
+                        <h3>Durable & Long-Lasting</h3>
+                        <p>Premium, non-porous acrylic that resists chipping, cracking, and fading.</p>
+                    </div>
+                    <div class="benefit-item animate-on-scroll">
+                        <div class="icon"><i class="fas fa-sparkles"></i></div>
+                        <h3>Effortless Cleaning</h3>
+                        <p>Say goodbye to scrubbing grout! Our surfaces are mold and mildew resistant.</p>
+                    </div>
+                    <div class="benefit-item animate-on-scroll">
+                        <div class="icon"><i class="fas fa-clock"></i></div>
+                        <h3>Fast Installation</h3>
+                        <p>Transform your bathroom in as little as one day with minimal disruption.</p>
+                    </div>
+                    <div class="benefit-item animate-on-scroll">
+                        <div class="icon"><i class="fas fa-palette"></i></div>
+                        <h3>Stylish & Custom</h3>
+                        <p>Wide range of colors, patterns, and accessories to match your unique taste.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="work">
+            <div class="container">
+                <h2 class="animate-on-scroll">Witness the Transformation</h2>
+                <div class="gallery">
+                    <!-- Project 1 -->
+                    <div class="gallery-item animate-on-scroll">
+                        <span class="before-after-label" style="padding:10px 0 0 10px;">BEFORE</span>
+                        <img src="https://via.placeholder.com/400x300.png?text=Project+1+Before" alt="Bathroom Before Renovation 1">
+                        <span class="before-after-label" style="padding:10px 0 0 10px;">AFTER</span>
+                        <img src="https://via.placeholder.com/400x300.png?text=Project+1+After" alt="Bathroom After Renovation 1">
+                        <div class="caption">
+                            <h4>Modern Tub-to-Shower Conversion</h4>
+                            <p>Marietta, GA - Acrylic Walls & Custom Liner</p>
+                        </div>
+                    </div>
+                    <!-- Project 2 -->
+                    <div class="gallery-item animate-on-scroll">
+                        <span class="before-after-label" style="padding:10px 0 0 10px;">BEFORE</span>
+                        <img src="https://via.placeholder.com/400x300.png?text=Project+2+Before" alt="Bathroom Before Renovation 2">
+                        <span class="before-after-label" style="padding:10px 0 0 10px;">AFTER</span>
+                        <img src="https://via.placeholder.com/400x300.png?text=Project+2+After" alt="Bathroom After Renovation 2">
+                        <div class="caption">
+                            <h4>Elegant Wall Surround Update</h4>
+                            <p>Alpharetta, GA - Easy-Clean Acrylic Panels</p>
+                        </div>
+                    </div>
+                    <!-- Project 3 -->
+                    <div class="gallery-item animate-on-scroll">
+                        <span class="before-after-label" style="padding:10px 0 0 10px;">BEFORE</span>
+                        <img src="https://via.placeholder.com/400x300.png?text=Project+3+Before" alt="Bathroom Before Renovation 3">
+                        <span class="before-after-label" style="padding:10px 0 0 10px;">AFTER</span>
+                        <img src="https://via.placeholder.com/400x300.png?text=Project+3+After" alt="Bathroom After Renovation 3">
+                        <div class="caption">
+                            <h4>Sleek Bath Liner Installation</h4>
+                            <p>Decatur, GA - Perfect Fit & Watertight Seal</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="why-us" style="background-color: var(--bg-medium);">
+            <div class="container">
+                <h2 class="animate-on-scroll">Why Choose [Your Company Name]?</h2>
+                <div class="benefits-grid">
+                     <div class="benefit-item animate-on-scroll">
+                        <div class="icon"><i class="fas fa-award"></i></div>
+                        <h3>Expert Craftsmanship</h3>
+                        <p>Years of specialized experience ensuring flawless installations every time.</p>
+                    </div>
+                    <div class="benefit-item animate-on-scroll">
+                        <div class="icon"><i class="fas fa-thumbs-up"></i></div>
+                        <h3>Customer Focused</h3>
+                        <p>Your complete satisfaction is our top priority, from consultation to completion.</p>
+                    </div>
+                    <div class="benefit-item animate-on-scroll">
+                        <div class="icon"><i class="fas fa-dollar-sign"></i></div>
+                        <h3>Affordable Quality</h3>
+                        <p>Get a high-end look and lasting value without the premium price tag.</p>
+                    </div>
+                    <div class="benefit-item animate-on-scroll">
+                        <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <h3>Local & Trusted</h3>
+                        <p>Proudly serving Atlanta and the surrounding 100-mile radius with integrity.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="service-area">
+            <div class="container">
+                <h2 class="animate-on-scroll">Serving Atlanta & Beyond</h2>
+                <p class="service-area-text animate-on-scroll">
+                    We proudly provide expert bath liner and wall surround installations to homeowners within a <strong>100-mile radius of Atlanta, Georgia</strong>.
+                    This includes communities like Marietta, Alpharetta, Decatur, Roswell, Sandy Springs, Johns Creek, Peachtree City, Newnan, Gainesville, and many more.
+                </p>
+                <div class="map-container animate-on-scroll">
+                    <!--
+                        !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                        IMPORTANT: REPLACE THIS IFRAME WITH YOUR GOOGLE MY MAPS EMBED CODE!
+                        The map below is a GENERIC Atlanta map.
+                        Follow the instructions provided earlier to create a map in Google My Maps
+                        with your 100-mile radius drawn on it, then embed that map here.
+                        This will visually show your service area.
+                        !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    -->
+                    <iframe
+                        id="service-area-map"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d424561.0619544608!2d-84.68846109653066!3d33.76763383088062!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f5045d6993098d%3A0x66fede2f990b630b!2sAtlanta%2C%20GA!5e0!3m2!1sen!2sus!4v1678886543210!5m2!1sen!2sus"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                <p class="animate-on-scroll" style="text-align:center; font-style:italic; margin-top:15px; font-size:0.9em;">
+                    (Map shows central Atlanta. Please generate and embed your custom Google My Map with the 100-mile service radius highlighted.)
+                </p>
+            </div>
+        </section>
+
+        <section id="contact" style="background-color: var(--bg-light);">
+            <div class="container">
+                <h2 class="animate-on-scroll">Ready for Your Dream Bathroom?</h2>
+                <p class="animate-on-scroll" style="text-align:center; max-width:700px; margin-left:auto; margin-right:auto; margin-bottom:40px;">
+                    Contact us today for a free, no-obligation consultation and estimate. Let's discuss how we can transform your bathroom quickly and affordably!
+                </p>
+                <div class="contact-flex-container">
+                    <div class="contact-details animate-on-scroll">
+                        <h3>Get in Touch</h3>
+                        <p><i class="fas fa-phone"></i><strong>Phone:</strong> <a href="tel:+15551234567">(555) 123-4567</a></p> <!-- REPLACE -->
+                        <p><i class="fas fa-envelope"></i><strong>Email:</strong> <a href="mailto:info@yourcompany.com">info@yourcompany.com</a></p> <!-- REPLACE -->
+                        <p><i class="fas fa-map-marker-alt"></i><strong>Address:</strong> 123 Bath Pro Ave, Atlanta, GA 30303 <br><span style="margin-left:90px;">(Consultations by appointment)</span></p> <!-- REPLACE OR ADJUST -->
+                        <p><i class="fas fa-clock"></i><strong>Hours:</strong> Mon - Fri: 9 AM - 5 PM <br> <span style="margin-left:90px;">Sat: 10 AM - 2 PM</span></p> <!-- REPLACE -->
+                    </div>
+
+                    <form class="contact-form animate-on-scroll" action="https://formspree.io/f/YOUR_UNIQUE_FORM_ID" method="POST"> <!-- Replace with your Formspree ID or backend script -->
+                        <h3>Send Us a Message</h3>
+                        <label for="name">Full Name:</label>
+                        <input type="text" id="name" name="name" required>
+
+                        <label for="email">Email Address:</label>
+                        <input type="email" id="email" name="email" required>
+
+                        <label for="phone">Phone Number:</label>
+                        <input type="tel" id="phone" name="phone">
+
+                        <label for="message">How can we help you?</label>
+                        <textarea id="message" name="message" placeholder="Tell us about your project or questions..." required></textarea>
+
+                        <button type="submit">Request My Free Quote</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© <script>document.write(new Date().getFullYear())</script> [Your Company Name]. All Rights Reserved. Bathroom Renovation Specialists in Atlanta, GA.</p>
+            <!-- Optional: <p><a href="/privacy-policy.html">Privacy Policy</a> | <a href="/terms.html">Terms of Service</a></p> -->
+        </div>
+    </footer>
+
+<script>
+    // Simple scroll animation
+    const scrollElements = document.querySelectorAll(".animate-on-scroll");
+
+    const elementInView = (el, dividend = 1) => {
+        const elementTop = el.getBoundingClientRect().top;
+        return (
+            elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+        );
+    };
+
+    const displayScrollElement = (element) => {
+        element.classList.add("is-visible");
+    };
+
+    const hideScrollElement = (element) => {
+        element.classList.remove("is-visible");
+    };
+
+    const handleScrollAnimation = () => {
+        scrollElements.forEach((el) => {
+            if (elementInView(el, 1.25)) { // Adjust 1.25 to control when animation triggers
+                displayScrollElement(el);
+            }
+            // Optional: To re-hide and re-animate if scrolling up past them
+            // else if (!elementInView(el, 0)) {
+            //  hideScrollElement(el)
+            // }
+        });
+    };
+
+    window.addEventListener("scroll", () => {
+        handleScrollAnimation();
+    });
+    // Trigger on load for elements already in view
+    handleScrollAnimation();
+
+    // Sticky Nav background change on scroll
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+    });
+
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById('mobile-menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+    // Close mobile menu when a link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+            }
+        });
+    });
+
+</script>
+
+</body>
+</html>
